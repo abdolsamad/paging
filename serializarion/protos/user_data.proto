@@ -1,0 +1,9 @@
+syntax = "proto3";
+package tutorial;
+option go_package = ".;protos";
+
+message UserData {
+    bytes gpsAdId = 1;
+    repeated uint32 current_apps = 2;
+    repeated uint32 previous_apps = 3;
+}

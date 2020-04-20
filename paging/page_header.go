@@ -1,4 +1,4 @@
-package paiging
+package paging
 
 import "pager/serializarion"
 
@@ -21,8 +21,8 @@ func NewRawPageHeader(flag PageFlag) RawPageHeader {
 	pageHeader := RawPageHeader(make([]byte, PAGE_HEADER_SIZE))
 	pageHeader.SetFlag(flag)
 	pageHeader.SetCellsCount(0)
-	pageHeader.SetFirstCellOffset(PAGE_SIZE - 1)
-	pageHeader.SetFirstFreeBlockOffset(PAGE_SIZE - 1)
+	pageHeader.SetFirstCellOffset(InvalidOffset)
+	pageHeader.SetFirstFreeBlockOffset(0)
 	pageHeader.SetFragmentedBytesCount(0)
 	return pageHeader
 }
@@ -63,6 +63,17 @@ func (rph RawPageHeader) SetCellsCount(cellsCount uint16) {
 	bts := serializarion.SerializeUint16(cellsCount)
 	rph[1] = bts[0]
 	rph[2] = bts[1]
+}
+
+func (rph RawPageHeader) IncreaseFragmentedBytesCount(size uint8) {
+	//TODO: defragment if necessary
+	fragmentedBytesCount := rph.GetFragmentedBytesCount()
+	rph.SetFragmentedBytesCount(fragmentedBytesCount + size)
+}
+
+func (rph RawPageHeader) DecreaseFragmentedBytesCount(size uint8) {
+	fragmentedBytesCount := rph.GetFragmentedBytesCount()
+	rph.SetFragmentedBytesCount(fragmentedBytesCount - size)
 }
 
 func (rph RawPageHeader) IncreaseCellsCount() {

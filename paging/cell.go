@@ -1,4 +1,4 @@
-package paiging
+package paging
 
 import (
 	"fmt"

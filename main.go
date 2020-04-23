@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"pager/paiging"
+	"pager/paging"
 	"pager/serializarion/protos"
 	"time"
 

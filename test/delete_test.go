@@ -1,8 +1,9 @@
 package test
 
 import (
-	"pager/paging"
 	"testing"
+
+	"github.com/abdolsamad/paging/paging"
 )
 
 func TestUpdateFirstCellsOffsetAfterDelete(t *testing.T) {

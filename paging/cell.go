@@ -2,7 +2,8 @@ package paging
 
 import (
 	"fmt"
-	"pager/serializarion"
+
+	"github.com/abdolsamad/paging/serializarion"
 )
 
 type Cell []byte

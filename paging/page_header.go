@@ -1,6 +1,6 @@
 package paging
 
-import "pager/serializarion"
+import "github.com/abdolsamad/paging/serializarion"
 
 type PageFlag byte
 

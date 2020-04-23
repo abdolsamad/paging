@@ -1,8 +1,9 @@
 package test
 
 import (
-	"pager/paging"
 	"testing"
+
+	"github.com/abdolsamad/paging/paging"
 )
 
 func comparator(cell1 paging.Cell, cell2 paging.Cell) bool {

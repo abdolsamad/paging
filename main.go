@@ -2,52 +2,10 @@ package main
 
 import (
 	"fmt"
-	"pager/paging"
-	"pager/serializarion/protos"
 	"time"
 
-	"google.golang.org/protobuf/proto"
+	"github.com/abdolsamad/paging/paging"
 )
-
-type PageFlag byte
-
-const (
-	PAGE_FLAG_LEAF = PageFlag(8)
-)
-
-func UserDataToCell(userData *protos.UserData) (paging.Cell, error) {
-	bytesU1, err := proto.Marshal(userData)
-	if err != nil {
-		return nil, err
-	}
-	cell, err := paging.NewCell(bytesU1)
-	if err != nil {
-		return nil, err
-	}
-	return cell, nil
-}
-
-func CellToUserData(cell paging.Cell) (*protos.UserData, error) {
-	ud := &protos.UserData{}
-	err := proto.Unmarshal(cell[2:], ud)
-	if err != nil {
-		return nil, err
-	}
-	return ud, nil
-}
-
-func AddUserData(page paging.Page, userData *protos.UserData) error {
-	cell, err := UserDataToCell(userData)
-	if err != nil {
-		return err
-	}
-
-	_, err = page.AddCell(cell, paging.GpsAdIdComparator)
-	if err != nil {
-		return err
-	}
-	return nil
-}
 
 func main() {
 	start := time.Now()

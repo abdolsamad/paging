@@ -2,7 +2,8 @@ package paging
 
 import (
 	"fmt"
-	"pager/serializarion"
+
+	"github.com/abdolsamad/paging/serializarion"
 )
 
 const InvalidOffset = uint16(0)
@@ -379,11 +380,9 @@ func (p Page) allocateNewBlock(size uint16) (offset uint16) {
 	firstCellOffset := p.GetRawHeader().GetFirstCellOffset()
 	if firstCellOffset == InvalidOffset {
 		return PAGE_SIZE - size
-	}else{
-		return firstCellOffset-size
+	} else {
+		return firstCellOffset - size
 	}
-	offset = p.GetRawHeader().GetFirstFreeBlockOffset() - size + 1
-	return
 }
 
 //function to work with empty blocks
